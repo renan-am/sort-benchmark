@@ -19,22 +19,24 @@ do
 		echo -n > gerador/input  
 done
 
-for tam in $tamanhos
+for sortPath in sorts/*
 do
-	echo $tam
+	sort=$(basename $sortPath)
+	echo $sort
 	echo
-	for sortPath in sorts/*
+	echo -n > "outputs/$sort.out"
+	for tam in $tamanhos
 	do
-		sort=$(basename $sortPath)
-		echo $sort
+		echo $tam
 		mkdir -p "outputs/"
 		echo "$tam" >> "outputs/$sort.out"
-			for inputPath in inputs/$tam/*
-			do	
-				input=$(basename $inputPath)
-				var=$(./sorts/$sort <"inputs/$tam/$input")
-				echo "$var" >> "outputs/$sort.out"
-			done
+		
+		for inputPath in inputs/$tam/*
+		do	
+			input=$(basename $inputPath)
+			var=$(./sorts/$sort <"inputs/$tam/$input")
+			echo "$var" >> "outputs/$sort.out"
+		done
 	echo " " >> "outputs/$sort.out"
 	done
 	echo
