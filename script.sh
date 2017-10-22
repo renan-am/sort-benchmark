@@ -33,13 +33,13 @@ do
 	flag=0
 	for tam in $tamanhos
 	do
-		echo $tam
-		mkdir -p "outputs/"
-		echo "$tam" >> "outputs/$sort.out"
 		if [ $flag -eq 1 ];
 			then
 				continue;
 		fi
+		echo $tam
+		mkdir -p "outputs/"
+		echo "$tam" >> "outputs/$sort.out"
 			for inputPath in inputs/$tam/*
 			do
 				input=$(basename $inputPath)
@@ -53,7 +53,7 @@ do
 				fi
 
 			done
-		echo " " >> "outputs/$sort.out"
+		echo "" >> "outputs/$sort.out"
 	done
 	echo
 done
