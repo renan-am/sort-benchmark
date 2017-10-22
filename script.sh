@@ -9,10 +9,14 @@ tamanhos="5000
 for tam in $tamanhos
 do
 	for ((i = 0; i<10; i++)); do
-			gerador="./gerador/gerador <$tam 1000000"
+			path="/gerador/input"
+			echo "$tam" > gerador/input
+			echo "1000000" >> gerador/input
+			gerador=$(./gerador/gerador <gerador/input > inputs/$tam/input$i)
 			mkdir -p "inputs/$tam/"
-			echo "$gerador" >> "inputs/$tam/input$i"
+			$gerador
 		done
+		echo -n > gerador/input  
 done
 
 for tam in $tamanhos
