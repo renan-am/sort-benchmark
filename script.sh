@@ -1,9 +1,9 @@
-tamanhos="5000 
-10000 
+tamanhos="5000
+10000
 25000
-50000 
-100000 
-250000 
+50000
+100000
+250000
 500000"
 
 for tam in $tamanhos
@@ -16,7 +16,7 @@ do
 			mkdir -p "inputs/$tam/"
 			$gerador
 		done
-		echo -n > gerador/input  
+		echo -n > gerador/input
 done
 
 for sortPath in sorts/*
@@ -30,9 +30,9 @@ do
 		echo $tam
 		mkdir -p "outputs/"
 		echo "$tam" >> "outputs/$sort.out"
-		
+
 		for inputPath in inputs/$tam/*
-		do	
+		do
 			input=$(basename $inputPath)
 			var=$(./sorts/$sort <"inputs/$tam/$input")
 			echo "$var" >> "outputs/$sort.out"
