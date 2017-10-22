@@ -1,3 +1,26 @@
+#!/bin/bash
+
+# Executes command with a timeout
+# Params:
+#   $1 timeout in seconds
+#   $2 command
+# Returns 1 if timed out 0 otherwise
+timeouts() {
+
+    time=$1
+
+    # start the command in a subshell to avoid problem with pipes
+    # (spawn accepts one command)
+    command="/bin/sh -c \"$2\""
+
+    expect -c "set echo \"-noecho\"; set timeout $time; spawn -noecho $command; expect timeout { exit 1 } eof { exit 0 }"    
+
+    if [ $? = 1 ] ; then
+        echo "Timeout after ${time} seconds"
+    fi
+
+}
+
 tamanhos="5000
 10000
 25000
@@ -25,19 +48,29 @@ do
 	echo $sort
 	echo
 	echo -n > "outputs/$sort.out"
+	flag=0
 	for tam in $tamanhos
 	do
 		echo $tam
 		mkdir -p "outputs/"
 		echo "$tam" >> "outputs/$sort.out"
+		if [ $flag -eq 1 ];
+			then
+				continue;
+		fi
+			for inputPath in inputs/$tam/*
+			do
+				input=$(basename $inputPath)
+				#var=$(./sorts/$sort <"inputs/$tam/$input" >> "outputs/$sort.out")
+				timeout 2 ./sorts/$sort <"inputs/$tam/$input" >> "outputs/$sort.out" 
+				if [ $? -eq 124 ]; 
+					then 
+						flag=1
+						break; 
+				fi
 
-		for inputPath in inputs/$tam/*
-		do
-			input=$(basename $inputPath)
-			var=$(./sorts/$sort <"inputs/$tam/$input")
-			echo "$var" >> "outputs/$sort.out"
-		done
-	echo " " >> "outputs/$sort.out"
+			done
+		echo " " >> "outputs/$sort.out"
 	done
 	echo
 done
