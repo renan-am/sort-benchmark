@@ -24,7 +24,7 @@ int main(){
 
 	clock_gettime(CLOCK_REALTIME, &requestStart);
 
-	heapSort(vector, size);
+	heapSort(vector, size-1);
 
   clock_gettime(CLOCK_REALTIME, &requestEnd);
 
