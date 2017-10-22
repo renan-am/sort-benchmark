@@ -16,15 +16,14 @@ for filename in os.listdir():
 print(i)
 print(sortArchives)
 
-
-
 results = []
 accumulator = 0
 counter = 0
 size = 0
 
-for x in range(0,i):
+for n in range(0,i):
     aux = sortArchives.pop()
+    sortArchives.append(aux)
     file_object = open(aux,"r")
     for line in file_object:
         if line[0] is '*':
