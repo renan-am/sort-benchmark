@@ -18,25 +18,31 @@ print(sortArchives)
 
 
 
-results = [];
-accumulator = 0;
-counter = 0;
-
+results = []
+accumulator = 0
+counter = 0
+size = 0
 
 for x in range(0,i):
-    file_object = open(sortArchives.pop(),"r")
+    aux = sortArchives.pop()
+    file_object = open(aux,"r")
     for line in file_object:
         if line[0] is '*':
             newstr = line.replace("*", "")
             size = int(newstr)
-        elif line[0] is '\n':
+        elif line is '\n':
+            if counter is 0:
+                continue
             new = resultForSize()
-            new.name = file_object
+            new.name = aux
             new.averageTime = accumulator/counter
             new.inputSize = size
-            result.append(new)
+            results.append(new)
             accumulator = 0
             counter = 0
         else:
             accumulator += float(line)
-            counter++
+            counter+=1
+
+
+print(results[0].inputSize)
