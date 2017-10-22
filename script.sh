@@ -14,7 +14,7 @@ sortNames="quickSort
 for tam in $tamanhos
 do
 	for ((i = 0; i<10; i++)); do
-			gerador="./gerador <$tam 1000000"
+			gerador="./gerador/gerador <$tam 1000000"
 			mkdir -p "inputs/$tam/"
 			echo "$gerador" >> "inputs/$tam/input$i"
 			inputNames+=" input$i"
@@ -25,10 +25,11 @@ for tam in $tamanhos
 do
 	for sort in $sortNames
 	do
+		mkdir -p "outputs/"
 		echo "$tam" >> "outputs/$sort.out"
 		for input in $inputNames
 		do	
-			var=$(./"$sort" <"inputs/$tam/$input")
+			var=$(./sorts/"$sort" <"inputs/$tam/$input")
 			echo "$var" >> "outputs/$sort.out"
 		done
 	echo " " >> "outputs/$sort.out"
