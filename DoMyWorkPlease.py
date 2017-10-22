@@ -44,5 +44,5 @@ for x in range(0,i):
             accumulator += float(line)
             counter+=1
 
-
-print(results[0].inputSize)
+for result in results:
+    print(result.name, result.inputSize, result.averageTime)
