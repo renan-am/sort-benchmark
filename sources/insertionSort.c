@@ -32,6 +32,8 @@ int main(){
 		/ BILLION;
 
 		printf( "%.9lf\n", accum );
+
+		free(vector);
 }
 
 void insertionSort(int original[], int length){

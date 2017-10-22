@@ -33,6 +33,8 @@ int main(){
 
 		printf( "%.9lf\n", accum );
 
+		free(vector);
+
 }
 
 void selection_sort(int num[], int tam) {
