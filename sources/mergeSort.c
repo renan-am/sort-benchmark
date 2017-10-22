@@ -34,8 +34,6 @@ int main(){
 
 		printf( "%.9lf\n", accum );
 
-    for(int i = 0; i < size; i++)
-      printf("%d ", vector[i]);
 }
 
 void merge(int vetor[], int comeco, int meio, int fim) {
