@@ -39,7 +39,7 @@ do
 		fi
 		echo $tam
 		mkdir -p "outputs/"
-		echo "$tam" >> "outputs/$sort.out"
+		echo "*$tam" >> "outputs/$sort.out"
 			for inputPath in inputs/$tam/*
 			do
 				input=$(basename $inputPath)
