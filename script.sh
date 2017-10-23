@@ -1,13 +1,12 @@
 #!/bin/bash
 
+./compilar.sh
+
 tamanhos="5000
 10000
-25000
-50000
-100000
-250000
-500000
-1000000"
+15000
+20000
+25000"
 
 for tam in $tamanhos
 do
@@ -57,3 +56,5 @@ do
 	done
 	echo
 done
+
+python3 DoMyWorkPlease.py
