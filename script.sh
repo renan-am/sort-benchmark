@@ -57,4 +57,5 @@ do
 	echo
 done
 
+rm -f outputs/*.html
 python3 DoMyWorkPlease.py

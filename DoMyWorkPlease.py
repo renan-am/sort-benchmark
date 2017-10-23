@@ -1,11 +1,6 @@
 import os
-import matplotlib.pyplot as plt
-
-class resultForSize:
-    def __init__(self):
-        self.sortName = ''
-        self.inputSize = 0
-        self.averageTime = 0
+import plotly
+import plotly.graph_objs as go
 
 os.chdir('outputs/')
 i = 0
@@ -14,8 +9,8 @@ for filename in os.listdir():
     print(filename)
     i = i + 1
     sortArchives.append(filename)
-print(i)
-print(sortArchives)
+#print(i)
+#print(sortArchives)
 
 results = []
 accumulator = 0
@@ -23,12 +18,16 @@ counter = 0
 size = 0
 
 for n in range(0,i):
+
     aux = sortArchives.pop()
+    file_object = open(aux,"r")
+    newstr2 = aux.replace(".out","")
+    aux = newstr2
     results.append([])
     results[n].append(aux)
-    file_object = open(aux,"r")
     results[n].append([])
     results[n].append([])
+
     for line in file_object:
         if line[0] is '*':
             newstr = line.replace("*", "")
@@ -51,9 +50,27 @@ for n in range(0,i):
         results[n][1].pop()
 
         
-for n in range(0,i):
-    plt.plot(results[n][1], results[n][2])
+
+trace = [None]*i
 
 
-plt.ylabel('some numbers')
-plt.show()
+for n in range (0,i):
+    trace[n] = go.Scatter(
+        x = results[n][1],
+        y = results[n][2],
+        name = results[n][0],
+        line = dict(
+            #color = ('rgb(205, 12, 24)'),
+            width = 4,
+            #dash = 'dashdot' # dash options include 'dash', 'dot', and 'dashdot'
+            )
+)
+
+# Edit the layout
+layout = dict(title = 'Benchmark de Algoritmos de Ordenação',
+              xaxis = dict(title = 'Quantidade de Números Testados'),
+              yaxis = dict(title = 'Tempo'),
+              )
+
+fig = dict(data=trace, layout=layout)
+plotly.offline.plot(fig, filename='grafico')
