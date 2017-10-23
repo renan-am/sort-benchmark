@@ -6,7 +6,6 @@ os.chdir('outputs/')
 i = 0
 sortArchives = [];
 for filename in os.listdir():
-    print(filename)
     i = i + 1
     sortArchives.append(filename)
 
@@ -17,7 +16,7 @@ size = 0
 
 for n in range(0,i):
     aux = sortArchives.pop()
-    sortArchives.append(aux)
+    #sortArchives.append(aux)
     file_object = open(aux,"r")
     newstr2 = aux.replace(".out","")
     aux = newstr2
@@ -60,7 +59,7 @@ for n in range (0,i):
         line = dict(
             #color = ('rgb(205, 12, 24)'),
             width = 4,
-            #dash = 'dashdot' # dash options include 'dash', 'dot', and 'dashdot'
+            #dash = 'linedot' # dash options include 'dash', 'dot', and 'dashdot'
             )
 )
 
