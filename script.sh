@@ -6,13 +6,14 @@ rm -rf outputs/*
 ./compilar.sh
 
 tamanhos=""
-for ((i = 2500; i <= 10000; i += 2500)); do
-    tamanhos+=" $i "
+
+for ((i = 1000000; i <= 10000000; i += 1000000)); do
+	tamanhos+=" $i "
 done
 
 for tam in $tamanhos
 do
-	for ((i = 0; i<10; i++)); do
+	for ((i = 0; i<2; i++)); do
 			mkdir -p "inputs/$tam/"
 			path="/gerador/input"
 			echo "$tam" > gerador/input
@@ -45,9 +46,9 @@ do
 			do
 				input=$(basename $inputPath)
 				#var=$(./sorts/$sort <"inputs/$tam/$input" >> "outputs/$sort.out")
-				timeout 20 ./sorts/$sort <"inputs/$tam/$input" >> "outputs/$sort.out"
-				if [ $? -eq 124 ];
-					then
+				timeout 10 ./sorts/$sort <"inputs/$tam/$input" >> "outputs/$sort.out" 
+				if [ $? -eq 124 ]; 
+					then 
 						flag=1
 						echo TIMEOUT
 						break;

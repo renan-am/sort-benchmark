@@ -58,7 +58,7 @@ for n in range (0,i):
         line = dict(
             #color = ('rgb(205, 12, 24)'),
             width = 4,
-            #dash = 'dashdot' # dash options include 'dash', 'dot', and 'dashdot'
+            #dash = 'linedot' # dash options include 'dash', 'dot', and 'dashdot'
             )
 )
 
