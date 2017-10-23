@@ -9,8 +9,6 @@ for filename in os.listdir():
     print(filename)
     i = i + 1
     sortArchives.append(filename)
-#print(i)
-#print(sortArchives)
 
 results = []
 accumulator = 0
@@ -18,8 +16,8 @@ counter = 0
 size = 0
 
 for n in range(0,i):
-
     aux = sortArchives.pop()
+    sortArchives.append(aux)
     file_object = open(aux,"r")
     newstr2 = aux.replace(".out","")
     aux = newstr2
