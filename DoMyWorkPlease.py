@@ -6,7 +6,6 @@ os.chdir('outputs/')
 i = 0
 sortArchives = [];
 for filename in os.listdir():
-    print(filename)
     i = i + 1
     sortArchives.append(filename)
 
@@ -17,7 +16,6 @@ size = 0
 
 for n in range(0,i):
     aux = sortArchives.pop()
-    sortArchives.append(aux)
     file_object = open(aux,"r")
     newstr2 = aux.replace(".out","")
     aux = newstr2
@@ -47,7 +45,7 @@ for n in range(0,i):
     if len(results[n][1]) > len(results[n][2]):
         results[n][1].pop()
 
-        
+
 
 trace = [None]*i
 
@@ -65,9 +63,9 @@ for n in range (0,i):
 )
 
 # Edit the layout
-layout = dict(title = 'Benchmark de Algoritmos de Ordenação',
-              xaxis = dict(title = 'Quantidade de Números Testados'),
-              yaxis = dict(title = 'Tempo'),
+layout = dict(title = 'Teste de desempenho de Algoritmos de Ordenação',
+              xaxis = dict(title = 'Número de Elementos de Entrada (n)'),
+              yaxis = dict(title = 'Tempo de execução (s)'),
               )
 
 fig = dict(data=trace, layout=layout)

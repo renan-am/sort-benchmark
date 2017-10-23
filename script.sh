@@ -1,12 +1,14 @@
 #!/bin/bash
+rm -rf sorts/*
+rm  -rf inputs/*
+rm -rf outputs/*
 
 ./compilar.sh
 
-tamanhos="5000
-10000
-15000
-20000
-25000"
+tamanhos=""
+for ((i = 2500; i <= 10000; i += 2500)); do
+    tamanhos+=" $i "
+done
 
 for tam in $tamanhos
 do
@@ -43,12 +45,12 @@ do
 			do
 				input=$(basename $inputPath)
 				#var=$(./sorts/$sort <"inputs/$tam/$input" >> "outputs/$sort.out")
-				timeout 2 ./sorts/$sort <"inputs/$tam/$input" >> "outputs/$sort.out" 
-				if [ $? -eq 124 ]; 
-					then 
+				timeout 20 ./sorts/$sort <"inputs/$tam/$input" >> "outputs/$sort.out"
+				if [ $? -eq 124 ];
+					then
 						flag=1
 						echo TIMEOUT
-						break; 
+						break;
 				fi
 
 			done
