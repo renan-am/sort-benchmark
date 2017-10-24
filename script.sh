@@ -7,7 +7,7 @@ rm -rf outputs/*
 
 tamanhos=""
 
-for ((i = 1000000; i <= 10000000; i += 1000000)); do
+for ((i = 5000; i <= 20000; i += 5000)); do
 	tamanhos+=" $i "
 done
 

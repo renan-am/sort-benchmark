@@ -2,6 +2,9 @@ import os
 import plotly
 import plotly.graph_objs as go
 
+def magnitude(x):
+	return int(math.log10(x))
+
 os.chdir('outputs/')
 i = 0
 sortArchives = [];
@@ -45,10 +48,22 @@ for n in range(0,i):
     if len(results[n][1]) > len(results[n][2]):
         results[n][1].pop()
 
+possibleMagnitudes = []
+## Classifying lists by magnitude to get a good scale, and more graphs
+for n in range(0,i):
+	results[n].append([])
+	results[n][3].append(magnitude(max(results[n][1])))
+	if magnitude(max(results[n][1]) in possibleMagnitudes:
+		continue
+	else:
+		possibleMagnitudes.append(magnitude(max(results[n][1])))
+
+numberOfGraphs = len(possibleMagnitudes)
+
+## fazer por numero de ocorrencias de cada termo de possibleMagnitudes
 
 
 trace = [None]*i
-
 
 for n in range (0,i):
     trace[n] = go.Scatter(
@@ -69,4 +84,4 @@ layout = dict(title = 'Teste de desempenho de Algoritmos de Ordenação',
               )
 
 fig = dict(data=trace, layout=layout)
-plotly.offline.plot(fig, filename='grafico')
+plotly.offline.plot(fig, filename='grafico.html')
